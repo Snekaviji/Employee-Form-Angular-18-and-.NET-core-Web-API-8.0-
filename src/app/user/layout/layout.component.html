@@ -1,0 +1,41 @@
+<div class="layout-container">
+  <app-left-menu></app-left-menu>
+
+  <div class="main-content">
+    <app-header></app-header>
+    <!-- Scrollable content container -->
+    <div class="scrollable-content">
+      <router-outlet></router-outlet>
+     <div class="content">
+  <!-- Your main content goes here -->
+</div>
+
+<!-- Pagination Controls -->
+<nav class="pagination">
+  <!-- Previous Button -->
+  <button (click)="onPrevious()" [disabled]="currentPage === 1">PREVIOUS</button>
+
+  <!-- Page Buttons (Dynamic) -->
+  <span 
+    *ngFor="let page of visiblePages" 
+    (click)="goToPage(page)" 
+    [class.active]="page === currentPage">
+    {{ page }}
+  </span>
+
+  <!-- Dropdown for Remaining Pages -->
+  <select (change)="onSelectDropdown($event)" [value]="currentPage">
+    <option *ngFor="let page of dropdownPages" [value]="page">
+      {{ page }}
+    </option>
+  </select>
+
+  <!-- Next Button -->
+  <button (click)="onNext()" [disabled]="currentPage === totalPages">NEXT</button>
+</nav>
+    </div>
+    <footer class="Footer">
+      © 2024 Excelencia Pvt Ltd. All Rights Reserved.
+    </footer>
+  </div>
+</div>

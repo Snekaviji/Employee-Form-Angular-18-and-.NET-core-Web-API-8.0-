@@ -1,0 +1,449 @@
+<!-- Ensure proper styles and validation for button visibility -->
+<div class="container mt-2" style="width: 55rem">
+  <div class="card p-4" style="background: #425364; color: white">
+    <h5 class="text-center mb-2">Employee Registration Form</h5>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Personal Information Section: Contains input fields for the user's first name, middle name, last name, marital status, and date of birth. -->
+      <fieldset class="border p-1 mb-1">
+        <legend
+          class="float-none w-auto px-3 text-center"
+          style="font-size: 14px"
+        >
+          Personal Information
+        </legend>
+
+        <div class="row mb-1">
+          <div class="col-md-4">
+            <!-- First Name input field -->
+            <label class="form-label" style="font-size: 12px"
+              >First Name <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="FirstName"
+              style="font-size: 11px"
+              placeholder="FirstName"
+              required
+            />
+            <div
+              class="error"
+              style="font-size: 11px; color: red"
+              *ngIf="
+                registerForm.get('FirstName')?.touched &&
+                registerForm.get('FirstName')?.errors
+              "
+            >
+              <span *ngIf="registerForm.get('FirstName')?.hasError('required')"
+                >First Name is required.</span
+              >
+              <span *ngIf="registerForm.get('FirstName')?.hasError('pattern')"
+                >Invalid First Name format.</span
+              >
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <!-- Middle Name input field -->
+            <label class="form-label" style="font-size: 12px"
+              >Middle Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="MiddleName"
+              style="font-size: 11px"
+              placeholder="Middle Name"
+            />
+          </div>
+
+          <div class="col-md-4">
+            <!-- Last Name input field -->
+            <label class="form-label" style="font-size: 12px"
+              >Last Name <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="LastName"
+              style="font-size: 11px"
+              placeholder="Last Name"
+              required
+            />
+            <div
+              class="error"
+              style="font-size: 11px; color: red"
+              *ngIf="
+                registerForm.get('LastName')?.touched &&
+                registerForm.get('LastName')?.errors
+              "
+            >
+              <span *ngIf="registerForm.get('LastName')?.hasError('required')"
+                >Last Name is required.</span
+              >
+              <span *ngIf="registerForm.get('LastName')?.hasError('pattern')"
+                >Invalid Last Name format.</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-md-6">
+            <!-- Marital Status dropdown -->
+            <label
+              for="maritalStatus"
+              class="form-label"
+              style="font-size: 12px"
+              >Marital Status</label
+            >
+            <select
+              class="form-select"
+              formControlName="MaritalStatus"
+              style="font-size: 11px"
+            >
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <!-- Date of Birth input field -->
+            <label for="dateOfBirth" class="form-label" style="font-size: 12px"
+              >Date of Birth <span class="text-danger">*</span></label
+            >
+            <input
+              type="date"
+              class="form-control"
+              formControlName="DateOfBirth"
+              style="font-size: 11px"
+              required
+            />
+            <div
+              class="error"
+              style="font-size: 11px; color: red"
+              *ngIf="
+                registerForm.get('dateOfBirth')?.touched &&
+                registerForm.get('dateOfBirth')?.errors
+              "
+            >
+              <span
+                *ngIf="registerForm.get('dateOfBirth')?.hasError('required')"
+                >Date of Birth is required.</span
+              >
+              <span *ngIf="registerForm.get('dateOfBirth')?.hasError('pattern')"
+                >Invalid Date of Birth format.</span
+              >
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Contact Information Section: Contains input fields for email and mobile number. -->
+      <fieldset class="border p-1 mb-1">
+        <legend
+          class="float-none w-auto px-3 text-center"
+          style="font-size: 14px"
+        >
+          Contact Information
+        </legend>
+
+        <div class="row mb-1">
+          <div class="col-md-6">
+            <!-- Email input field -->
+            <label class="form-label" style="font-size: 12px"
+              >Email <span class="text-danger">*</span></label
+            >
+            <input
+              type="Email"
+              class="form-control"
+              formControlName="Email"
+              style="font-size: 11px"
+              placeholder="Email"
+              required
+            />
+            <div
+              class="error"
+              style="font-size: 11px; color: red"
+              *ngIf="
+                registerForm.get('email')?.touched &&
+                registerForm.get('email')?.errors
+              "
+            >
+              <span *ngIf="registerForm.get('email')?.hasError('required')"
+                >Email is required.</span
+              >
+              <span *ngIf="registerForm.get('email')?.hasError('pattern')"
+                >Invalid email format.</span
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- Mobile Number input field -->
+            <label class="form-label" style="font-size: 12px"
+              >Mobile Number <span class="text-danger">*</span></label
+            >
+            <input
+              type="tel"
+              class="form-control"
+              formControlName="MobileNumber"
+              style="font-size: 11px"
+              placeholder="Mobile Number"
+              required
+            />
+            <div
+              class="error"
+              style="font-size: 11px; color: red"
+              *ngIf="
+                registerForm.get('mobileNumber')?.touched &&
+                registerForm.get('mobileNumber')?.errors
+              "
+            >
+              <span
+                *ngIf="registerForm.get('mobileNumber')?.hasError('required')"
+                >Mobile Number is required.</span
+              >
+              <span
+                *ngIf="registerForm.get('mobileNumber')?.hasError('pattern')"
+                >Invalid Mobile Number format.</span
+              >
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Address Section: Contains input fields for address, street, city, state, and zip code. -->
+      <fieldset class="border p-1 mb-1">
+        <legend class="float-none w-auto px-3 mx-auto" style="font-size: 14px">
+          Address
+        </legend>
+
+        <div class="row mb-1">
+          <div class="col-md-4">
+            <!-- Address 1 input field -->
+            <label class="form-label" style="font-size: 12px"
+              >Address 1 <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="Address1"
+              style="font-size: 11px"
+              placeholder="Address 1"
+              required
+            />
+            <div
+              class="error"
+              style="font-size: 11px; color: red"
+              *ngIf="
+                registerForm.get('Address 1')?.touched &&
+                registerForm.get('Address 1')?.errors
+              "
+            >
+              <span *ngIf="registerForm.get('Address 1')?.hasError('required')"
+                >Address 1 is required.</span
+              >
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <!-- Street input field -->
+            <label class="form-label" style="font-size: 12px">Street</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="Street"
+              style="font-size: 11px"
+              placeholder="Street"
+            />
+          </div>
+
+          <div class="col-md-4">
+            <!-- City input field -->
+            <label class="form-label" style="font-size: 12px"
+              >City <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="City"
+              style="font-size: 11px"
+              placeholder="City"
+              required
+            />
+            <div
+              class="error"
+              style="font-size: 11px; color: red"
+              *ngIf="
+                registerForm.get('City')?.touched &&
+                registerForm.get('City')?.errors
+              "
+            >
+              <span *ngIf="registerForm.get('City')?.hasError('required')"
+                >City is required.</span
+              >
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-md-6">
+              <!-- State input field -->
+              <label class="form-label" style="font-size: 12px">State</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="State"
+                style="font-size: 11px"
+                placeholder="State"
+                required
+              />
+            </div>
+
+            <div class="col-md-6">
+              <!-- Zip Code input field -->
+              <label class="form-label" style="font-size: 12px"
+                >Zip Code <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                formControlName="ZipCode"
+                style="font-size: 11px"
+                placeholder="Zip Code"
+                required
+              />
+              <div
+                class="error"
+                *ngIf="
+                  registerForm.get('ZipCode')?.touched &&
+                  registerForm.get('ZipCode')?.errors
+                "
+              >
+                <span *ngIf="registerForm.get('ZipCode')?.hasError('required')"
+                  >ZipCode is required.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Account Information Section: Contains input fields for username, password, and confirm password. -->
+      <fieldset class="border p-2 mb-1">
+        <legend
+          class="float-none w-auto px-3 text-center"
+          style="font-size: 14px"
+        >
+          Account Information
+        </legend>
+
+        <div class="row mb-0">
+          <div class="col-md-4">
+            <!-- Username input field -->
+            <label class="form-label" style="font-size: 12px"
+              >User Name <span class="text-danger">*</span></label
+            >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="UserName"
+              style="font-size: 11px"
+              placeholder="User Name"
+              required
+            />
+            <div
+              class="error"
+              *ngIf="
+                registerForm.get('User name')?.touched &&
+                registerForm.get('User name')?.errors
+              "
+            >
+              <span *ngIf="registerForm.get('User name')?.hasError('required')"
+                >User name is required.</span
+              >
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <!-- Password input field -->
+            <label class="form-label" style="font-size: 12px"
+              >Password <span class="text-danger">*</span></label
+            >
+            <input
+              type="password"
+              class="form-control"
+              formControlName="Password"
+              style="font-size: 11px"
+              placeholder="Password"
+              required
+            />
+            <div
+              class="error"
+              *ngIf="
+                registerForm.get('Password')?.touched &&
+                registerForm.get('Password')?.errors
+              "
+            >
+              <span *ngIf="registerForm.get('Password')?.hasError('required')"
+                >Password is required.</span
+              >
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <!-- Confirm Password input field -->
+            <label class="form-label" style="font-size: 12px"
+              >Confirm Password <span class="text-danger">*</span></label
+            >
+            <input
+              type="password"
+              class="form-control"
+              formControlName="ConfirmPassword"
+              style="font-size: 11px"
+              placeholder="Confirm Password"
+              required
+            />
+            <div
+              class="error"
+              *ngIf="
+                registerForm.get('Confirm password')?.touched &&
+                registerForm.get('Confirm password')?.errors
+              "
+            >
+              <span
+                *ngIf="
+                  registerForm.get('Confirm password')?.hasError('required')
+                "
+                >Confirm password is required.</span
+              >
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Submit Button -->
+      <div class="d-flex justify-content-center mt-2">
+        <button
+          type="submit"
+          class="btn w-50 text-black"
+          [disabled]="registerForm.invalid"
+          style="
+            font-size: 14px;
+            background-color: #7acecb;
+            border-color: #eff4f4;
+          "
+        >
+          Register
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center mt-1" style="font-size: 13px">
+      <a
+        routerLink="/login"
+        class="d-block text-warning text-decoration-none d-block p-1"
+        >Already have an account? Login</a
+      >
+    </div>
+  </div>
+</div>

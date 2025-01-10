@@ -1,0 +1,48 @@
+<style>
+  /* Page styling with navy blue background and white text */
+  body {
+    background-color: #425364;
+    color: #fff;
+  }
+  
+  /* Card styling with dark background and rounded corners */
+  .card {
+    background-color: #34495e;
+    color: #fff;
+    border-radius: 10px;
+  }
+</style>
+
+<!-- Main container for the login form -->
+<div class="container mt-5" style="width: 25rem">
+  <!-- Card containing the login form -->
+  <div class="card p-4">
+    <!-- Login form title -->
+    <h2 class="text-center mb-4">Login</h2>
+    
+    <!-- Form for user login -->
+    <form (ngSubmit)="onSubmit()" autocomplete="off">
+      <!-- Username input field with ngModel for binding -->
+      <div class="mb-3">
+        <label class="form-label">User Name</label>
+        <input type="text" class="form-control" style="font-size: 12px" placeholder="Enter your user name" name="username" [(ngModel)]="username" required />
+      </div>
+
+      <!-- Password input field with ngModel for binding -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" style="font-size: 12px" placeholder="Enter your password" name="password" [(ngModel)]="password" required />
+      </div>
+
+      <!-- Submit button for the form -->
+      <div class="d-flex justify-content-center mt-4">
+        <button type="submit" class="btn w-50 text-white" style="background-color: #39c745; border-color: #39c745">Login</button>
+      </div>
+    </form>
+
+    <!-- Link to the registration page -->
+    <div class="text-center mt-3">
+      <a routerLink="/register" class="text-decoration-none d-block p-1">Sign up</a>
+    </div>
+  </div>
+</div>

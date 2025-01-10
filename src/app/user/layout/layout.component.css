@@ -1,0 +1,78 @@
+.layout-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden; /* Prevent overall layout scrolling */
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #f6f5f5; /* Ensure header has a background */
+}
+
+.scrollable-content {
+  flex-grow: 1; /* Takes up remaining space */
+  overflow-y: auto; /* Adds vertical scrolling */
+  padding: 16px; /* Optional padding */
+  background-color: #f9f9f9; /* Optional background */
+}
+
+.Footer {
+  margin-top: auto; /* Push footer to the bottom */
+  text-align: center;
+  font-size: 12px;
+  color: #4b4b4b;
+  background-color: #fff; /* Ensure footer has a background */
+  padding: 12px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+.pagination span {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.pagination span.active {
+  background-color: #122897;
+  color: #fff;
+  font-size: 13px;
+  border-color: #122897;
+}
+
+button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #122897;
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
