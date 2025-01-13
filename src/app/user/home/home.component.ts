@@ -40,6 +40,8 @@ export class HomeComponent {
   currentSortOrder: string | undefined;
   filteredEmployees: any[] = [];
   searchQuery: string = '';
+  // Array for sample employee data
+  employeelist: Employee[] = [];
 
   constructor(
     private authService: AuthService,
@@ -63,6 +65,7 @@ export class HomeComponent {
   // Define the structure and validations for the employee form
   setFormstate() {
     this.employeeForm = this.fb.group({
+      employeeId: [''],
       firstName: ['', [Validators.required]],
       middleName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -163,29 +166,30 @@ export class HomeComponent {
       });
     }
   }
-  // Array for sample employee data
-  employeelist: Employee[] = [];
-  employee: any[] = [
-    {
-      firstName: '',
-      middleName: '',
-      lastName: '',
-      maritalStatus: '',
-      dateOfBirth: '',
-      mobileNumber: '',
-      address1: '',
-      city: '',
-      state: '',
-      street:'',
-      zipCode: 0,
-      email: '',
-      username: '',
-      password: '',
-    },
-  ];
+
+  // employee: any[] = [
+  //   {
+  //     // employeeID: '',
+  //     firstName: '',
+  //     middleName: '',
+  //     lastName: '',
+  //     maritalStatus: '',
+  //     dateOfBirth: '',
+  //     mobileNumber: '',
+  //     address1: '',
+  //     city: '',
+  //     state: '',
+  //     street: '',
+  //     zipCode: 0,
+  //     email: '',
+  //     username: '',
+  //     password: '',
+  //   },
+  // ];
   onEdit(employee: any) {
     console.log('employee', employee);
     this.employeeForm.patchValue({
+      employeeId: employee.employeeId,
       firstName: employee.firstName,
       middleName: employee.middleName,
       lastName: employee.lastName,
@@ -251,7 +255,7 @@ export class HomeComponent {
   // Submit the form to add or update an employee
   onSubmit() {
     console.log('Form Valid:', this.employeeForm.valid);
-    console.log('Form Valid:', this.employeeForm);
+    console.log('Form Valid:', this.employeeForm.value);
     for (const controlName in this.employeeForm.controls) {
       const control = this.employeeForm.controls[controlName];
       if (control.errors) {
@@ -262,7 +266,7 @@ export class HomeComponent {
     // Proceed only if the form is valid
     if (this.employeeForm.valid) {
       const employeeData = this.employeeForm.value;
-      // console.log('Employee Data:', employeeData);
+      console.log('Employee Data:', employeeData);
       // Check if we are updating an existing employee
       if (employeeData.employeeId) {
         // Update employee
@@ -278,6 +282,7 @@ export class HomeComponent {
             console.error('Error updating employee:', err);
           });
       } else {
+        delete employeeData['employeeId'];
         // Create new employee
         this.authService.createEmployee(employeeData).subscribe({
           next: (response) => {

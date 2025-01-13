@@ -1,5 +1,6 @@
 // Define an interface named Employee to provide a structure for employee data
 export interface Employee {
+  employeeId: number;
   id: number;
   FirstName: string;
   MiddleName: string;

@@ -48,7 +48,7 @@ export class EmployeeService {
    */
   updateEmployee(employee: Employee) {
     return firstValueFrom(
-      this.http.put(`${this.apiurl}/${employee.id}`, employee)
+      this.http.put(`${this.apiurl}/${employee.employeeId}`, employee)
     );
   }
 }
